@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name:  {{ .Release.Name }}-command
+  labels:
+    {{- include "sideralis-core.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "sideralis-core.name" . }}-command
+    app.kubernetes.io/instance: {{ .Release.Name }}-command

@@ -1,0 +1,115 @@
+= Sideralis Core Rest Command
+Raul A. Alzate <raul.alzate@sideralis.com>;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:sectnums:
+
+== Intro
+
+Command documentation for the Core subdomain of the Sideralis project.
+Execute the commands under the domain **https://api.sideralis.co** using the POST method.
+
+[TIP]
+If possible, create the aggregateId from the consumer rest (client), since it would be easily accessible for queries through that id.
+Use UUID that guarantees a unique identity.
+
+== Create Clan
+operation::core.clan.create[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.clan.create/[aggregateRootId]_* to get the domain event from backend
+- Use the *_clan/[aggregateRootId]/core.clan.create_* to get the domain event from frontend
+include::{snippets}/core.clan.create/response-body.adoc[]
+
+== Create Member
+operation::core.clan.createmember[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.clan.createmember/[aggregateRootId]_* to get the domain event from backend
+- Use the *_clan/[aggregateRootId]/core.clan.createmember_* to get the domain event from frontend
+include::{snippets}/core.clan.createmember/response-body.adoc[]
+
+== Revoke Member
+operation::core.clan.revokemember[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.clan.revokemember/[aggregateRootId]_* to get the domain event from backend
+- Use the *_clan/[aggregateRootId]/core.clan.revokemember_* to get the domain event from frontend
+include::{snippets}/core.clan.revokemember/response-body.adoc[]
+
+== Update Member
+operation::core.clan.updatemember[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.clan.updatemember/[aggregateRootId]_* to get the domain event from backend
+- Use the *_clan/[aggregateRootId]/core.dojo.create_* to get the domain event from frontend
+include::{snippets}/core.clan.updatemember/response-body.adoc[]
+
+== Create Dojo
+operation::core.dojo.create[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.dojo.create/[aggregateRootId]_* to get the domain event from backend
+- Use the *_dojo/[aggregateRootId]/core.dojo.create_* to get the domain event from frontend
+include::{snippets}/core.dojo.create/response-body.adoc[]
+
+== Update Location For Dojo
+operation::core.dojo.updatelocation[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.dojo.updatelocation/[aggregateRootId]_* to get the domain event from backend
+- Use the *_dojo/[aggregateRootId]/core.dojo.updatelocation_* to get the domain event from frontend
+include::{snippets}/core.dojo.updatelocation/response-body.adoc[]
+
+== Update Opening Hour For Dojo
+operation::core.dojo.updateopeninghour[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.dojo.updateopeninghour/[aggregateRootId]_* to get the domain event from backend
+- Use the *_dojo/[aggregateRootId]/core.dojo.updateopeninghour_* to get the domain event from frontend
+include::{snippets}/core.dojo.updateopeninghour/response-body.adoc[]
+
+== Add New Rule For Dojo
+operation::core.dojo.addrule[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.dojo.addrule/[aggregateRootId]_* to get the domain event from backend
+- Use the *_dojo/[aggregateRootId]/core.dojo.addrule_* to get the domain event from frontend
+include::{snippets}/core.dojo.addrule/response-body.adoc[]
+
+
+== Remove Rule Of Dojo
+operation::core.dojo.removerule[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.dojo.removerule/[aggregateRootId]_* to get the domain event from backend
+- Use the *_dojo/[aggregateRootId]/core.dojo.removerule_* to get the domain event from frontend
+include::{snippets}/core.dojo.removerule/response-body.adoc[]
+
+== Update Data Info Of Dojo
+operation::core.dojo.updatedatainfo[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.dojo.updatedatainfo/[aggregateRootId]_* to get the domain event from backend
+- Use the *_dojo/[aggregateRootId]/core.dojo.updatedatainfo_* to get the domain event from frontend
+include::{snippets}/core.dojo.updatedatainfo/response-body.adoc[]
+
+== Create Challenge
+operation::core.challenge.create[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.challenge.create/[aggregateRootId]_* to get the domain event from backend
+- Use the *_challenge/[aggregateRootId]/core.challenge.create_* to get the domain event from frontend
+include::{snippets}/core.challenge.create/response-body.adoc[]
+
+== Create Kata
+operation::core.challenge.createkata[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.challenge.createkata/[aggregateRootId]_* to get the domain event from backend
+-Use the *_challenge/[aggregateRootId]/core.challenge.createKata_* to get domain event from frontend
+include::{snippets}/core.challenge.createKata/response-body.adoc[]
+
+== Revoke Challenge
+operation::core.challenge.revoke[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.challenge.revoke/[aggregateRootId]_* to get the domain event from backend
+-Use the *_challenge/[aggregateRootId]/core.challenge.revoke_* to get domain event from frontend
+include::{snippets}/core.challenge.revoke/response-body.adoc[]
+
+== Assign repository url
+operation::core.challenge.assignrepourl[snippets='request-fields,http-request']
+=== Domain Event
+- Use the topic *_core.challenge.assignrepourl/[aggregateRootId]_* to get the domain event from backend
+-Use the *_challenge/[aggregateRootId]/core.challenge.assignrepourl_* to get domain event from frontend
+include::{snippets}/core.challenge.assignrepourl/response-body.adoc[]

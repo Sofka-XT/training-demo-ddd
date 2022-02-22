@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-ingress
+  labels:
+    {{- include "sideralis-core.labels" . | nindent 4 }}
+  annotations:
+    ingress.kubernetes.io/enable-cors: "true"
+    ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
+    ingress.kubernetes.io/cors-allow-origin: "*"
+    kubernetes.io/ingress.global-static-ip-name: ip-core-sideralis
+    networking.gke.io/managed-certificates: {{ .Release.Name }}-certificate-ingress
+
+spec:
+  rules:
+    - host: api.sideralis.co
+      http:
+        paths:
+          - path: /executor/*
+            backend:
+              serviceName: {{ .Release.Name }}-command
+              servicePort: 8080
+          - path: /queries/*
+            backend:
+              serviceName:  {{ .Release.Name }}-queries
+              servicePort: 8083

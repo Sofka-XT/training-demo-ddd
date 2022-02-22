@@ -1,0 +1,10 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: sideralis-core-queries
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017/queries}
+  nats:
+    uri: ${NATS_URI:nats://localhost:4222}

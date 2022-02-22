@@ -1,0 +1,7 @@
+name: google_oauth2
+label: Google
+app_id: '986661225445-85prup0110qik8nm3jco243k523gdesu.apps.googleusercontent.com'
+app_secret: 'XTbpaWcFoR1RkbERSBdlWL4V'
+args:
+  access_type: offline
+  approval_prompt: ''

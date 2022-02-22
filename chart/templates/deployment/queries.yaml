@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-queries
+  labels:
+    {{- include "sideralis-core.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "sideralis-core.name" . }}-queries
+      app.kubernetes.io/instance: {{ .Release.Name }}-queries
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "sideralis-core.name" . }}-queries
+        app.kubernetes.io/instance: {{ .Release.Name }}-queries
+    spec:
+      containers:
+        - name: queries
+          image: "{{ .Values.queries.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.queries.pullPolicy }}
+          ports:
+            - containerPort: 8083
+          readinessProbe:
+            httpGet:
+              port: 8083
+              path: /queries/
+          env:
+            - name: "MONGO_URI"
+              valueFrom:
+                secretKeyRef:
+                  key:  mongo_uri
+                  name: {{ .Release.Name }}-uri
+            - name: "NATS_URI"
+              valueFrom:
+                secretKeyRef:
+                  key:  nats_uri
+                  name: {{ .Release.Name }}-uri
+

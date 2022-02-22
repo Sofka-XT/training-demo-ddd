@@ -1,0 +1,24 @@
+replicaCount: 1
+
+nats:
+  auth:
+    password: NatsPassword
+
+mongodb:
+  mongodbUsername: userCore
+  mongodbPassword: MongoDBPassword
+  mongodbDatabase: queries
+
+mongo_uri: "mongodb://userCore:MongoDBPassword@core-sideralis-mongodb:27017/queries"
+nats_uri: "nats://nats_client:NatsPassword@core-sideralis-nats-client:4222"
+
+command:
+  repository: gcr.io/sideralis/core-rest-command
+  pullPolicy: Always
+
+queries:
+  repository: gcr.io/sideralis/core-rest-query
+  pullPolicy: Always
+
+ingress:
+  host: api.sideralis.co

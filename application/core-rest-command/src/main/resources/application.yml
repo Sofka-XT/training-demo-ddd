@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: sideralis-core-commands
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017/events}
+  nats:
+    uri: ${NATS_URI:nats://localhost:4222}
+  gitlab:
+    uri: ${GITLABE_URI:https://root:Gitlab2020@localhost}
+  queries:
+    url: ${QUERIES_URL:http://localhost:8083/api}

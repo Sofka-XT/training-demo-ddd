@@ -1,0 +1,19 @@
+name: master branch
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  test:
+    name: Verify
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11.0.4
+      - name: Maven Verify
+        run: mvn -B clean verify
+

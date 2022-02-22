@@ -1,0 +1,156 @@
+@startuml
+
+' hide the spot
+hide circle
+
+entity "[AR] Dojo" as Dojo {
+    [ID] id
+    [E] coach
+    [VO] dataInfo
+    [Enum] status
+    [List] rules
+    [VO] location
+    --
+    **changeLocation**
+    **addRole**
+    **cancelDojo**
+    **addAccomplishmentToCoach**
+    **updateDataToCoach**
+    **closeDojo**
+    **changeDataInfo**
+    **evaluateClan**
+    --
+    RuleRemoved
+    UpdatedDataCoach
+    EvaluatedClan
+    AddedRule
+    DojoStatusChanged
+    CreatedDojo
+    AddedAccomplishmentToCoach
+    AssignedCoach
+    ChangedDataInfo
+    ChangedLocation
+}
+class "[VO] DataInfo" as DataInfo{
+    [String] name
+    [String] legend
+}
+class "[Enum] Status" as Status{
+    CLOSED
+    CANCELLED
+    OPEN
+}
+class "[VO] Location" as Location {
+    [String] urlMeet
+    [String] location
+    [String] description
+    [VO] openingHours
+}
+class "[VO] OpeningHours" as OpeningHours {
+    [Integer] hourStart
+    [Integer] hourEnd
+    [Enum] frequency
+}
+class "[Enum] Frequency" as Frequency{
+    MONTHLY
+    BIWEEKLY
+    WEEKLY
+    EACH_THREE_DAYS
+    WEEKENDS
+    EVERY_TWO_DAYS
+}
+entity "[E] Couch" as Couch {
+    [ID] id
+    [VO] name
+    [VO] personId
+    [VO] specialty
+    [List] accomplishment
+    --
+    **changeSpecialty**
+    **addAccomplishment**
+    **update**
+}
+class "[VO] Accomplishment" as Accomplishment {
+    [String] label
+    [Int] point
+    [Date] date
+}
+entity "[AR] Clan" as Clan  {
+  [ID] id
+  [E] members
+  [VO] name
+  [VO] color
+  --
+  **addNewMember**
+  **revokeMember**
+  **addScoreToMember**
+  **updateMember**
+  **updateName**
+  --
+  CreatedClan
+  RevokedMember
+  UpdatedName
+  UpdatedScoreOfMember
+  UpdatedMember
+  AddedMember
+}
+
+entity "[E] Member" as Member {
+  [ID] id
+  [VO] alias
+  [VO] gender
+  [Boolean] isOwner
+  [VO] personId
+  [List] scores
+  --
+  **addScore**
+  **updateAlias**
+  **updateGender**
+}
+
+class "[VO] Score" as Score {
+  [Int] point
+  [VO] dojoId
+  [Date] date
+}
+
+entity "[AR] Challenge" as Challenge{
+    [ID] id
+    [VO] name
+    [VO] dojoId
+    [E] katas
+    [VO] assessment
+    [Boolean] isRevoked
+    [VO] duration
+    --
+    **addNewKata**
+    **changeDuration**
+    **updateName**
+    **updateKata**
+    **addExerciseOfKata**
+    **assignAssessment**
+    **revokeChallenge**
+    --
+    UpdatedName
+    CreatedChallenge
+    ChangedDuration
+    UpdatedKata
+    AddedExerciseOfKata
+    RevokedChallenge
+    RevokedKata
+    AssignedAssessment
+    AddedKata
+}
+Challenge }|.. Dojo
+OpeningHours ||-- Frequency
+Location ||-- OpeningHours
+Dojo ||-- Location
+Dojo ||-- DataInfo
+Dojo ||-- Status
+Couch }|-- Accomplishment
+Dojo ||-- Couch
+Dojo }o.. Clan
+Clan }|-- Member
+Member }|-- Score
+
+@enduml

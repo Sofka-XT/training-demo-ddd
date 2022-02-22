@@ -1,0 +1,35 @@
+name: core-rest-query branch
+
+on:
+  push:
+    branches:
+      - 'core-rest-query'
+
+jobs:
+  build:
+    name: Publish & Deploy
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11.0.4
+      - name: Maven Package
+        run: mvn -B clean package
+      - uses: RafikFarhad/push-to-gcr-github-action@v1
+        with:
+          gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          registry: gcr.io
+          context: application/core-rest-query
+          project_name: sideralis
+          image_name: core-rest-query
+          image_tag: latest
+      - name: Rollout Restart Deployment
+        uses: ameydev/gke-kubectl-action@master
+        env:
+          PROJECT_ID: sideralis
+          APPLICATION_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          CLUSTER_NAME: main
+          ZONE_NAME: us-central1-c
+        with:
+          args: rollout restart deployment/api-sideralis-core-queries

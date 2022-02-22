@@ -1,0 +1,30 @@
+= Sideralis Core Rest Query
+Raul A. Alzate <alzategomez.raul@gmail.com>;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:sectnums:
+
+== Intro
+
+Query documentation for the Core subdomain of the Sideralis project.
+Execute the queries under the path api.sideralis.co/queries/find/[path] for model list and api.sideralis.co/queries/get/[path] for only model, using the GET method.
+
+== Find Clan All
+operation::api/find/clan-all[snippets='http-request,response-body,response-fields']
+
+== Get Clan By ClanId
+operation::api/get/clan[snippets='http-request,response-body,response-fields']
+
+== Get Members By ClanId
+operation::api/get/members-by[snippets='http-request,response-body,response-fields']
+
+== Get Dojo All Open
+operation::api/find/dojo-all[snippets='http-request,response-body,response-fields']
+
+== Get Dojo By Name
+operation::api/get/dojo-by-name[snippets='http-request,response-body,response-fields']
+
+== Get Dojo By Id
+operation::api/get/dojo[snippets='http-request,response-body,response-fields']

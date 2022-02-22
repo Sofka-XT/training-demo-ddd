@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+<script src="https://raw.githubusercontent.com/antonioaguilar/ws-nats/master/dist/ws-nats.js"></script>
+<script>
+    var nats = NATS.connect({ url: 'ws://10.1.75.137:8080', json: true });
+
+    nats.publish('foo', { message: 'Hello World!' });
+  </script>
+</body>
+</html>

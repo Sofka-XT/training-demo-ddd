@@ -1,0 +1,7 @@
+apiVersion: networking.gke.io/v1beta2
+kind: ManagedCertificate
+metadata:
+  name: {{ .Release.Name }}-certificate-ingress
+spec:
+  domains:
+    - api.sideralis.co
